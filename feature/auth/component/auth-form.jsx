@@ -7,6 +7,8 @@ import { LayoutContext } from '../../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
 import { authUser } from '../service/auth-login.service'
+import Cookies from 'js-cookie'; 
+import Link from 'next/link';
 export const AuthForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,8 +19,9 @@ export const AuthForm = () => {
             username: username,
             password: password
         }
-        await authUser(dataLogin);
-        console.log(dataLogin)
+        const resLogin = await authUser(dataLogin);
+        Cookies.set('token', resLogin.data.token);
+        router.push('/');
     }
     const router = useRouter();
     const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
@@ -50,14 +53,13 @@ export const AuthForm = () => {
                             </label>
                             <Password inputId="password1" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
 
-                            <div className="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div className="flex align-items-center justify-content-start mb-5 gap-1">
                                 <div className="flex align-items-center">
-                                    <Checkbox inputId="rememberme1" checked={checked} onChange={(e) => setChecked(e.checked ?? false)} className="mr-2"></Checkbox>
-                                    <label htmlFor="rememberme1">Remember me</label>
+                                    <label htmlFor="rememberme1">¿No tiene una cuenta?</label>
                                 </div>
-                                <a className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }}>
-                                    Forgot password?
-                                </a>
+                                <Link href={'/registro'} className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }}>
+                                    Registrarme
+                                </Link>
                             </div>
                             <Button label="Ingresar" className="w-full p-3 text-xl" onClick={() => loginUser()}></Button>
                         </div>
