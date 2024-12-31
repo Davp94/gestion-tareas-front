@@ -18,5 +18,5 @@ export async function middleware(request){
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|public/|layout/|styles/|app/|types/).*)',]
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico|public/|layout/|styles/|app/|types/|config/|feature/|app/|demo/).*)',]
 }

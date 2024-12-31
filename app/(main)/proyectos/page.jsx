@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { IndexProyecto } from '@/feature/proyecto/component/index';
 const ProyectosPage = () => {
     return (
         <>
-            <h1>PROYECTOS PAGE</h1>
+            <IndexProyecto />
         </>
     )
 }
