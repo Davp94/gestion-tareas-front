@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getProyectos } from '../service/proyecto.service'
 import { DataView, DataViewLayoutOptions } from "primereact/dataview";
 import { Button } from "primereact/button";
-import { useStore } from "zustand";
+import { useStore } from '@/state-management/store'
 import { useRouter } from "next/navigation";
 
 export const ProyectoView = () => {
@@ -11,12 +11,12 @@ export const ProyectoView = () => {
     const [proyectos, setProyectos] = useState([]);
     const [layout, setLayout] = useState('grid');
     const [loading, setLoading] = useState(true);
-    const { proyecto, addProyecto } = useStore();
+    const addProyecto = useStore((state) => state.addProyecto);
     const router = useRouter();
 
     const initComponent  = async () => {
         const dataProyectos = await getProyectos();
-        setProyectos(dataProyectos);
+        addProyecto(dataProyectos);
     }
 
     useEffect(()=> {
@@ -29,7 +29,7 @@ export const ProyectoView = () => {
         </div>
     );
 
-    goToTasks = (data) => {
+    const goToTasks = (data) => {
         addProyecto(data)
         router.push('/tareas');
     }

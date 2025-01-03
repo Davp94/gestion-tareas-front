@@ -1,9 +1,10 @@
 import React from 'react';
+import { IndexTarea } from '../../../feature/tarea/component';
 
 const TableroKanbanPage = () => {
     return (
         <>
-            <h1>TABLERO KANBAN</h1>
+              <IndexTarea />
         </>
     )
 }

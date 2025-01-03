@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-const useStore = create((set) => ({
+export const useStore = create((set) => ({
     proyecto: {},
-    addProyecto: (proyecto) => set({ proyecto: proyecto }),
+    addProyecto: (proyecto) => set({ proyecto }),
     removeProyecto: () => set({ proyecto: {} }),
 }))
