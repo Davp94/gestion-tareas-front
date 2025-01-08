@@ -52,21 +52,29 @@ export const UsuarioForm = () => {
     }, []);
 
     return (
-        <>
+        <div className="w-full h-screen flex flex-column justify-content-center align-items-center">
             <h1>Registro de Usuario</h1>
-            <form className="w-full flex justify-content-center align-items-center gap-4" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-column gap-2">
-                    <InputTextController control={control} name="nombres" placeholder="Ingrese los nombres" rules={{ required: true }} label='Nombres'/>
-                    <InputTextController control={control} name="apellidos" placeholder="Ingrese los apellidos" rules={{ required: true }} />
-                    <InputTextController control={control} name="email" placeholder="Ingrese un email" rules={{ required: true }} />
-                    <InputTextController control={control} name="username" placeholder="Ingrese un username" rules={{ required: true }} />
-                    <div>
+            <form className="flex justify-content-center align-items-center gap-4" onSubmit={handleSubmit(onSubmit)}>
+                <div className="flex flex-column gap-4">
+                    <div className="p-fluid">
+                        <InputTextController control={control} name="nombres" placeholder="Ingrese los nombres" rules={{ required: true }} label="Nombres" />
+                    </div>
+                    <div className="p-fluid">
+                        <InputTextController control={control} name="apellidos" placeholder="Ingrese los apellidos" rules={{ required: true }} label="Apellidos" />
+                    </div>
+                    <div className="p-fluid">
+                        <InputTextController control={control} name="email" placeholder="Ingrese un email" rules={{ required: true }} label="email"/>
+                    </div>
+                    <div className="p-fluid">
+                        <InputTextController control={control} name="username" placeholder="Ingrese un username" rules={{ required: true }} label="uesrname"/>
+                    </div>
+                    <div className="p-fluid">
                         <Password inputId="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full mb-5" inputClassName="w-full p-3 md:w-30rem"></Password>
                     </div>
+                    <FileUpload name="Avatar" multiple={false} accept="image/*" maxFileSize={1000000} customUpload={true} uploadHandler={(e) => onUpload(e)} emptyTemplate={<p>Seleccione una imagen</p>} />
+                    <Button label="REGISTRAR" className="w-full p-3" size="small" onClick={() => onSubmit()}></Button>
                 </div>
-                <FileUpload name="Avatar" multiple={false} accept="image/*" maxFileSize={1000000} customUpload={true} uploadHandler={(e) => onUpload(e)} emptyTemplate={<p>Seleccione una imagen</p>} />
-                <Button label="REGISTRAR" className="w-full p-3" size='small' onClick={() => onSubmit()}></Button>
             </form>
-        </>
+        </div>
     );
 };

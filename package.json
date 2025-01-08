@@ -28,6 +28,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
     "prettier": "^2.8.8",

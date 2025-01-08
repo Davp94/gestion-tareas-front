@@ -6,3 +6,11 @@ export const authUser = async (dataLogin) => {
         }
     )
 }
+
+export const dataUser = async (token) => {
+    return await http.get(`/usuario/token?token=${token}`).then(
+        res => {
+            return res;
+        }
+    )
+}

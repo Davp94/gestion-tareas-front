@@ -6,7 +6,7 @@ import { Password } from 'primereact/password';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-import { authUser } from '../service/auth-login.service'
+import { authUser, dataUser } from '../service/auth-login.service'
 import Cookies from 'js-cookie'; 
 import Link from 'next/link';
 export const AuthForm = () => {
@@ -21,7 +21,9 @@ export const AuthForm = () => {
         }
         const resLogin = await authUser(dataLogin);
         Cookies.set('token', resLogin.data.token);
-        router.push('/');
+        const userData = await dataUser(resLogin.data.token);
+        Cookies.set('user', userData.data.id);
+        router.push('/');  
     }
     const router = useRouter();
     const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
