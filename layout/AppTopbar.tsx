@@ -14,7 +14,7 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const menubuttonRef = useRef(null);
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
-    const menuRight = useRef(null);
+    const menuRight = useRef<Menu>(null);
     const router = useRouter();
 
     const items = [
@@ -67,7 +67,7 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
                     <span>Calendar</span>
                 </button>
                 <Menu model={items} popup ref={menuRight} id="popup_menu_right" popupAlignment="right" />
-                <button type="button" className="p-link layout-topbar-button" onClick={(event) => menuRight.current.toggle(event)} aria-controls="popup_menu_right" aria-haspopup>
+                <button type="button" className="p-link layout-topbar-button" onClick={(event) => menuRight.current!.toggle(event)} aria-controls="popup_menu_right" aria-haspopup>
                     <i className="pi pi-user"></i>
                     
                 </button>

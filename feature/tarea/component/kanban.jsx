@@ -81,7 +81,6 @@ export const KanvanView = () => {
     };
 
     const handleDrop = async (targetColumnId) => {
-        console.log("🚀 ~ handleDrop ~ targetColumnId:", targetColumnId)
         if (!draggedTask) return;
 
         const { task, sourceColumn } = draggedTask;
